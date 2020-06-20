@@ -3,11 +3,10 @@
 dataset<-x
 dataset<-filter(dataset, state== "Texas",year == 2016, party != "NA")
 #dataset %>% glimpse() 
-#introduces variable to shorted data due to only needed to view winning party
+#introduces variable to shorten data due to only needing to view winning party
 dataset$win = NA
 #introduces variable to be used to quantify gerrymandering
 dataset$margin = NA
-#tranverses dataset seting margin to difference in lost votes
 i=0
 numRow<-nrow(dataset)
 #for loop fills in "win" variable for dataset
@@ -23,7 +22,7 @@ for(i in 1:numRow){
 #filter out the no win rows we will only need the wins for visualization
 dataset<-filter(dataset, win=="yes")
 numRow<-nrow(dataset)
-#set the "margin" variable for each row
+#fills in the "margin" variable for each row
 for(i in 1:numRow){
   margin<-(dataset[i,"totalvotes"]-dataset[i,'candidatevotes'])
   dataset[i,"margin"]<-margin
@@ -47,7 +46,7 @@ for(i in 1:numRow){
   }
   i=i+1
 }
-#finds average margin of whice a party won
+#finds average margin of which a party won
 republicanAverage<-(republicanMargin/republicanCounties)
 democratAverage<-(democratMargin/democratCounties)
 #for the this dataset the result is a
